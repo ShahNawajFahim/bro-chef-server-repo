@@ -48,6 +48,20 @@ async function run() {
             res.send(result);
         })
 
+        app.get('/reviews', async (req, res) => {
+            const query = {};
+            const cursor = reviewCollection.find(query)
+            const reviews = await cursor.limit(3).toArray();
+            res.send(reviews);
+        });
+
+        // app.get('/reviews/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const query = { _id: ObjectId(id) };
+        //     const review = await reviewCollection.findOne(query);
+        //     res.send(review)
+        // });
+
 
     }
     finally {
